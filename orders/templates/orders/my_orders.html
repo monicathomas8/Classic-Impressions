@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+    <h2>My Orders</h2>
+
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <strong>Order #{{ order.id }}</strong><br>
+                    Placed: {{ order.created_at|date:"j M Y, H:i" }}<br>
+                    Status: {{ order.get_status_display }}<br>
+                    Total items: {{ order.items.count }}<br>
+                    <a href="{% url 'order_success' order.id %}">View details</a>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don’t have any orders yet.</p>
+        <p><a href="{% url 'products' %}">Start shopping</a></p>
+    {% endif %}
+{% endblock %}

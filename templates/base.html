@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}My store{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <span>Hi, {{ user.username }}</span>
+                        <li><a href="{% url 'my_account' %}">My Account</a></li>
+                        <li><a href="{% url 'my_orders' %}">My orders</a></li>
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Log in</a></li>
+                        <li><a href="{% url 'signup' %}">Sign up</a></li>
+                    {% endif %}
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="{% url 'products' %}">Shop</a></li>
+                    <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                    <li ><a id="cartButton" href="{% url 'cart_detail' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="20" height="20" fill="currentColor" 
+                                viewBox="0 0 16 16" style="vertical-align: middle;">
+                                <path d="M0 1a1 1 0 0 1 1-1h1.11a1 1 0 0 1 .95.68L3.89 3H14a1 1 0 0 1 .98 1.2l-1.5 7A1 1 0 0 1 12.5 12H4a1 1 0 0 1-.97-.76L1.61 1H1a1 1 0 0 1-1-1z"/>
+                                <circle cx="5.5" cy="13.5" r="1.5"/>
+                                <circle cx="11.5" cy="13.5" r="1.5"/>
+                            </svg>
+
+                             {% if cart_items_count %}
+                               ({{ cart_items_count }})
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </header>
+        <h1>Django E-commerce Base</h1>
+
+        <main>
+            {% block content %}
+            <!-- Page specific content will go here -->
+            {% endblock %}
+        </main>
+
+        <footer>
+            <p>&copy;2025 My Store. All rights reserved.</p>
+        </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

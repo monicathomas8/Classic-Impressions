@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Django E-commerce Base Shop!</h1>
+        {% if products %}
+    <ul>
+        {% for product in products %}
+            <li>
+                {% if product.image %}
+                        <img 
+                            src="{{ product.image.url }}" 
+                            alt="{{ product.name }}" 
+                            style="max-width: 150px; height: auto; display: block; margin-bottom: 0.5rem;"
+                        >
+                    {% else %}
+                        <span style="font-size: 0.9rem; color: #777;">
+                            Image coming soon
+                        </span>
+                    {% endif %}
+
+                    <strong>
+                        <a href="{% url 'product_detail' slug=product.slug %}">
+                        {{ product.name }}
+                        </a>
+                    </strong><br>
+                    Category: {{ product.category.name }}<br>
+                    Price: £{{ product.price }}<br>
+                    {{ product.description|default:"No description yet." }}
+
+                    <form action="{% url 'add_to_cart' product.id %}" method="post" style="margin-top: 0.5rem;">
+                        {% csrf_token %}
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit">Add to cart</button>
+                    </form>
+            </li>
+            <hr>
+        {% endfor %}
+     </ul>
+    {% else %}
+        <p>No products available yet.</p>
+    {% endif %}
+    
+{% endblock %}

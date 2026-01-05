@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Django E-commerce Base{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Django E-commerce Base</h2>
+    <p>This is your starter homepage. You can customise this later.</p>
+
+    <p>
+        <a href="{% url 'products' %}">Go to products →</a>
+    </p>
+{% endblock %}

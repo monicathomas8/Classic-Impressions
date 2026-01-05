@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Product Details | My Store{% endblock %}
+
+{% block content %}
+
+<h1>{{ product.name }}</h1>
+{% if product.image %}
+    <img 
+        src="{{ product.image.url }}" 
+        alt="{{ product.name }}" 
+        style="max-width: 300px; height: auto; display: block; margin-bottom: 1rem;"
+    >
+{% endif %}
+
+
+<p><strong>Category:</strong> {{ product.category.name }}</p>
+<p><strong>Price:</strong> £{{ product.price }}</p>
+
+<p>{{ product.description }}</p>
+
+<p><a href="/">Back to shop</a></p>
+
+{% endblock %}
