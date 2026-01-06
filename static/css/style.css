@@ -1,3 +1,14 @@
+body {
+    font-family: 'Playfair Display', serif;
+    
+}
+
+
+h1, h2, h3 {
+    font-family: 'Playfair', serif;
+    font-weight: 700;
+}
+
 /* NAVBAR BASE — safe for all projects */
 nav {
     background: #f5f5f5;         /* very neutral */
