@@ -14,3 +14,10 @@ def about(request):
     Simple about page for the project.
     """
     return render(request, 'about.html')
+
+
+def faq(request):
+    """
+    Simple FAQ page for the project.
+    """
+    return render(request, 'faq.html')
