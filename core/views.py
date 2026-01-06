@@ -21,3 +21,10 @@ def faq(request):
     Simple FAQ page for the project.
     """
     return render(request, 'faq.html')
+
+
+def installation(request):
+    """
+    Simple installation guide page for the project.
+    """
+    return render(request, 'installation.html')

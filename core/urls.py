@@ -9,6 +9,9 @@ urlpatterns = [
     path('', views.home, name='home'),                  # Home page
     path('about/', views.about, name='about'),          # About page
     path('faq/', views.faq, name='faq'),                # FAQ page
+    path(
+        'insallation/', views.installation, name='installation'
+    ),  # Installation guide
     path('accounts/', include('accounts.urls')),         # User accounts
     path('admin/', admin.site.urls),                     # Admin site
     path("orders/", include("orders.urls")),               # Order management
