@@ -23,9 +23,8 @@
                     {% endif %}
                     <li><a href="{% url 'products' %}">Shop Collection</a></li>
                     <li><a href="#">Custom Services</a></li>
-                    <li><a href="#">About & Craftsmanship</a></li>
+                    <li><a href="{% url 'about' %}">About & Craftsmanship</a></li>
                     <li><a href="#">Contact</a></li>
-                    
                     <li><a href="{% url 'checkout' %}">Checkout</a></li>
                     <li ><a id="cartButton" href="{% url 'cart_detail' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" 

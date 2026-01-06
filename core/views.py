@@ -7,3 +7,10 @@ def home(request):
     Later you can expand this with hero, sections, etc.
     """
     return render(request, 'home.html')
+
+
+def about(request):
+    """
+    Simple about page for the project.
+    """
+    return render(request, 'about.html')
