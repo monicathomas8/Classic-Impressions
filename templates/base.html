@@ -11,18 +11,21 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Classic Impressions</a></li>
                     {% if user.is_authenticated %}
                         <span>Hi, {{ user.username }}</span>
                         <li><a href="{% url 'my_account' %}">My Account</a></li>
                         <li><a href="{% url 'my_orders' %}">My orders</a></li>
                         <li><a href="{% url 'logout' %}">Log out</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}">Log in</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
                         <li><a href="{% url 'signup' %}">Sign up</a></li>
                     {% endif %}
+                    <li><a href="{% url 'products' %}">Shop Collection</a></li>
+                    <li><a href="#">Custom Services</a></li>
+                    <li><a href="#">About & Craftsmanship</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="{% url 'products' %}">Shop</a></li>
+                    
                     <li><a href="{% url 'checkout' %}">Checkout</a></li>
                     <li ><a id="cartButton" href="{% url 'cart_detail' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -48,7 +51,7 @@
             </ul>
             {% endif %}
         </header>
-        <h1>Django E-commerce Base</h1>
+        <h1>Classic Impressions</h1>
 
         <main>
             {% block content %}
@@ -57,7 +60,7 @@
         </main>
 
         <footer>
-            <p>&copy;2025 My Store. All rights reserved.</p>
+            <p>&copy;2025 Classic Impressions. All rights reserved.</p>
         </footer>
     <script src="{% static 'js/script.js' %}"></script>
     </body>
