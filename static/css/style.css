@@ -3,15 +3,14 @@ body {
     
 }
 
-
 h1, h2, h3 {
     font-family: 'Playfair', serif;
     font-weight: 700;
 }
 
-/* NAVBAR BASE — safe for all projects */
+/* NAVBAR BASE — safe for all projects 
 nav {
-    background: #f5f5f5;         /* very neutral */
+    background: #f5f5f5;         
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
 }
@@ -37,12 +36,10 @@ nav a:hover {
 }
 
 #cartButton {
-    margin-left: 40px; /* adjustable */
+    margin-left: 40px; 
     display: inline-flex;
     align-items: center;
-    gap: 5px; /* space between icon and count */
+    gap: 5px; 
     font-weight: bold;
 }
-
-
-/* END NAVBAR BASE */
+END NAVBAR BASE */

@@ -7,43 +7,93 @@
         <title>{% block title %}Classic Impressions{% endblock %}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'home' %}">Classic Impressions</a></li>
-                    {% if user.is_authenticated %}
-                        <span>Hi, {{ user.username }}</span>
-                        <li><a href="{% url 'my_account' %}">My Account</a></li>
-                        <li><a href="{% url 'my_orders' %}">My orders</a></li>
-                        <li><a href="{% url 'logout' %}">Log out</a></li>
-                    {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'signup' %}">Sign up</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'products' %}">Shop Collection</a></li>
-                    <li><a href="#">Custom Services & Historical Restoration</a></li>
-                    <li><a href="{% url 'about' %}">About Our Craftsmanship</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="{% url 'checkout' %}">Checkout</a></li>
-                    <li ><a id="cartButton" href="{% url 'cart_detail' %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="20" height="20" fill="currentColor" 
+            <nav class="navbar navbar-expand-lg ci-navbar">
+                <div class="container-xl">
+
+                    <!-- Brand -->
+                    <a class="navbar-brand ci-brand" href="{% url 'home' %}">
+                    Classic Impressions
+                    </a>
+
+                    <!-- Toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products' %}">Shop Collection</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Custom Services &amp; Historical Restoration</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About Our Craftsmanship</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text ci-hello">Hi, {{ user.username }}</span>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'my_account' %}">My Account</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'my_orders' %}">My Orders</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ci-nav-cta" href="{% url 'signup' %}">Sign up</a>
+                        </li>
+                        {% endif %}
+
+                        <li class="nav-item">
+                        <a class="nav-link ci-cart" id="cartButton" href="{% url 'cart_detail' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="20" height="20" fill="currentColor"
                                 viewBox="0 0 16 16" style="vertical-align: middle;">
-                                <path d="M0 1a1 1 0 0 1 1-1h1.11a1 1 0 0 1 .95.68L3.89 3H14a1 1 0 0 1 .98 1.2l-1.5 7A1 1 0 0 1 12.5 12H4a1 1 0 0 1-.97-.76L1.61 1H1a1 1 0 0 1-1-1z"/>
-                                <circle cx="5.5" cy="13.5" r="1.5"/>
-                                <circle cx="11.5" cy="13.5" r="1.5"/>
+                            <path d="M0 1a1 1 0 0 1 1-1h1.11a1 1 0 0 1 .95.68L3.89 3H14a1 1 0 0 1 .98 1.2l-1.5 7A1 1 0 0 1 12.5 12H4a1 1 0 0 1-.97-.76L1.61 1H1a1 1 0 0 1-1-1z"/>
+                            <circle cx="5.5" cy="13.5" r="1.5"/>
+                            <circle cx="11.5" cy="13.5" r="1.5"/>
                             </svg>
 
-                             {% if cart_items_count %}
-                               ({{ cart_items_count }})
+                            {% if cart_items_count %}
+                            <span class="ci-cart-count">({{ cart_items_count }})</span>
                             {% endif %}
                         </a>
-                    </li>
-                </ul>
+                        </li>
+
+                    </ul>
+                    </div>
+
+                </div>
             </nav>
             {% if messages %}
             <ul class="messages">
@@ -72,5 +122,6 @@
             <p>&copy;2025 Classic Impressions. All rights reserved.</p>
         </footer>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>
 </html>
