@@ -1,45 +1,119 @@
 body {
     font-family: 'Playfair Display', serif;
-    
+    background-color: #e9efe9;  /* soft, calm green */
+    color: #1f2f26;  /* deep forest green */
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Playfair', serif;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
-/* NAVBAR BASE — safe for all projects 
-nav {
-    background: #f5f5f5;         
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
+/* Classic Impressions - Minimal Premium Header */
+.ci-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: rgba(246, 244, 239, 0.96); /* warm neutral over green */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(31,47,38,0.12);
+    padding: 1.05rem 0;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.ci-brand {
+    font-family: "Playfair Display", serif;
+    font-size: 1.55rem;
+    letter-spacing: 0.4px;
+    color: #1f2f26;
+    text-transform: uppercase;
 }
 
-nav ul li {
-    display: inline-block;
-    margin-right: 15px;
+.ci-brand:hover {
+    color: #1f2f26;
 }
 
-nav a {
-    text-decoration: none;
-    color: #333;
+.ci-toplink {
+    color: #1f2f26;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .9rem;
+    opacity: 0.9;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.ci-toplink:hover {
+    opacity: 1;
 }
 
-#cartButton {
-    margin-left: 40px; 
+.ci-cart {
     display: inline-flex;
     align-items: center;
-    gap: 5px; 
-    font-weight: bold;
+    gap: .35rem;
+    color: #1f2f26;
 }
-END NAVBAR BASE */
+
+.ci-cart-count {
+    font-size: .9rem;
+}
+
+.ci-menu-btn {
+    border: 1px solid #1f2f26;
+    background: transparent;
+    color: #1f2f26;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .85rem;
+    padding: .45rem .9rem;
+    border-radius: 0;
+    transition: all 0.25s ease;
+}
+
+.ci-menu-btn:hover {
+    background: #1f2f26;
+    color: #fff;
+}
+
+/* Offcanvas (Menu panel) */
+.ci-offcanvas {
+    background: #f6f4ef;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ci-offcanvas-title {
+    font-family: "Playfair Display", serif;
+    color: #1f2f26;
+}
+
+.ci-menu-link {
+    color: #1f2f26;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .9rem;
+    padding: .4rem 0;
+}
+
+.ci-divider {
+    border-color: rgba(0, 0, 0, 0.12);
+    margin: 1rem 0;
+}
+
+.ci-hello {
+    color: rgba(31, 47, 38, 0.8);
+    margin-bottom: .5rem;
+}
+
+.ci-menu-cta {
+    border: 1px solid #1f2f26;
+    display: inline-block;
+    padding: .45rem .9rem !important;
+    width: fit-content;
+}
+
+.section-card {
+  background: #f6f4ef;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+}

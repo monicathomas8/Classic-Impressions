@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
+
 {% block title %}Home | Classic Impressions{% endblock %}
 
 {% block content %}
+
     <h2>The Art of Architectural Detail</h2>
+    <section class="section-card">
     <p>Welcome to Classic Impressions, where we believe that true elegance lies in the details.
         In an era of streamlined design, we are devoted to the enduring beauty, proportion, and artistry of classical architecture.
         
@@ -20,8 +23,10 @@
         which brings the stately permanence of a foundry artifact to your project.
         Every piece in this catalog is an Impression meant to last, designed to elevate your space with undeniable Classic grandeur.
         We invite you to explore this catalog and find the perfect architectural detail to complete your enduring vision.
-</p>
+    </p>
     <p>
         <a href="{% url 'products' %}">Collection</a>
     </p>
+</section>
+
 {% endblock %}
