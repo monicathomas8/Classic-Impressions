@@ -4,9 +4,32 @@ body {
     color: #1f2f26;  /* deep forest green */
 }
 
-h1,
-h2,
-h3 {
+main {
+  padding-top: 1.5rem;
+}
+
+/* Container to center content and limit max width */
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.page-wrapper > section:first-child {
+  margin-top: 2rem;
+}
+
+/* Links */
+a {
+  color: #1f2f26;
+}
+
+a:hover {
+  color: #16231c;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair', serif;
     font-weight: 700;
     text-transform: uppercase;
@@ -116,4 +139,88 @@ h3 {
   background: #f6f4ef;
   padding: 2.5rem 2rem;
   margin-bottom: 2rem;
+}
+
+/* Classic Impressions Footer */
+.ci-footer {
+  background: #dde6dd; /* slightly deeper green than body */
+  margin-top: 4rem;
+  padding: 3rem 0 1.5rem;
+  color: #1f2f26;
+  border-top: 1px solid rgba(31,47,38,0.12);
+}
+
+/* Grid layout */
+.ci-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Brand block */
+.ci-footer-brand h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.ci-footer-brand p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Column headings */
+.ci-footer-col h5 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+/* Links */
+.ci-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ci-footer li {
+  margin-bottom: 0.4rem;
+}
+
+.ci-footer a {
+  color: #1f2f26;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.ci-footer a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Social list spacing */
+.ci-social li {
+  margin-bottom: 0.35rem;
+}
+
+/* Bottom bar */
+.ci-footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(31,47,38,0.12);
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+  .ci-footer {
+    padding: 2.5rem 0 1.25rem;
+  }
+
+  .ci-footer-grid {
+    gap: 2rem;
+  }
 }
