@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from .forms import CustomServiceRequestForm
 
-# Create your views here.
+
+def custom_service_request_view(request):
+    if request.method == "POST":
+        form = CustomServiceRequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Thank you! We’ve received your request and will be in touch."
+            )
+            return redirect("requests:custom_services")
+    else:
+        form = CustomServiceRequestForm()
+
+    return render(request, "requests/custom_services.html", {"form": form})

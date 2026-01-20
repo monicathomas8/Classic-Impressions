@@ -17,6 +17,8 @@ urlpatterns = [
     path("orders/", include("orders.urls")),               # Order management
     path('products/', include('catalogue.urls')),       # Product catalogue
     path('cart/', include('cart.urls')),    # Shopping cart
+    path('contact/', include('contact.urls')),   # Contact form
+    path('custom-services/', include('requests.urls')),  # Custom service
 ]
 
 if settings.DEBUG:
