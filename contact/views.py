@@ -13,4 +13,4 @@ def contact_view(request):
     else:
         form = ContactMessageForm()
 
-    return render(request, "contact/contact_form.html", {"form": form})
+    return render(request, "contact/contact.html", {"form": form})

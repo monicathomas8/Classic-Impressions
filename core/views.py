@@ -28,3 +28,10 @@ def installation(request):
     Simple installation guide page for the project.
     """
     return render(request, 'installation.html')
+
+
+def contact_view(request):
+    """
+    Simple contact page for the project.
+    """
+    return render(request, 'contact/contact.html')
