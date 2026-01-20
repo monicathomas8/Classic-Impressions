@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- LEFT: Contact details + Map + Social -->
+    <div class="col-lg-5">
+
+      <div class="bg-light p-4 rounded shadow-sm mb-4">
+        <h1 class="h3 mb-3">Contact Us</h1>
+        <p class="text-muted mb-4">
+          Questions, quotes, or custom requests — send us a message and we’ll get back to you as soon as possible.
+        </p>
+
+        <div class="mb-3">
+          <h2 class="h6 text-uppercase text-muted mb-2">Address</h2>
+          <p class="mb-0">
+            Classic Impressions<br>
+            123 Example Street<br>
+            Richmond, London<br>
+            TW9 XXX
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <h2 class="h6 text-uppercase text-muted mb-2">Contact</h2>
+          <p class="mb-1">
+            <strong>Email:</strong>
+            <a href="mailto:hello@classicimpressions.co.uk">hello@classicimpressions.co.uk</a>
+          </p>
+          <p class="mb-0">
+            <strong>Phone:</strong>
+            <a href="tel:+442012345678">+44 20 1234 5678</a>
+          </p>
+        </div>
+
+        <div class="mb-0">
+          <h2 class="h6 text-uppercase text-muted mb-2">Opening Hours</h2>
+          <ul class="list-unstyled mb-0">
+            <li class="d-flex justify-content-between"><span>Mon–Fri</span><span>9:00 – 17:30</span></li>
+            <li class="d-flex justify-content-between"><span>Saturday</span><span>10:00 – 16:00</span></li>
+            <li class="d-flex justify-content-between"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-light p-3 rounded shadow-sm mb-4">
+        <h2 class="h6 text-uppercase text-muted mb-3">Find us</h2>
+
+        <!-- Google Map Embed -->
+        <div class="ratio ratio-4x3 rounded overflow-hidden">
+          <iframe
+            src="PASTE_YOUR_GOOGLE_MAP_EMBED_LINK_HERE"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <p class="small text-muted mt-2 mb-0">
+          Tip: You can open directions in Google Maps from the address above.
+        </p>
+      </div>
+
+      <div class="bg-light p-4 rounded shadow-sm">
+        <h2 class="h6 text-uppercase text-muted mb-3">Social</h2>
+
+        <div class="d-flex gap-3 align-items-center mb-3">
+          <a class="btn btn-outline-dark btn-sm" href="https://www.instagram.com/YOURHANDLE/" target="_blank" rel="noopener">
+            Instagram
+          </a>
+          <a class="btn btn-outline-dark btn-sm" href="https://www.facebook.com/YOURPAGE" target="_blank" rel="noopener">
+            Facebook
+          </a>
+          <a class="btn btn-outline-dark btn-sm" href="https://www.pinterest.com/YOURPAGE" target="_blank" rel="noopener">
+            Pinterest
+          </a>
+        </div>
+
+        <!-- Instagram Preview (Option A: Embed a single post / reel) -->
+        <div class="rounded overflow-hidden">
+          <blockquote class="instagram-media"
+            data-instgrm-permalink="PASTE_A_PUBLIC_INSTAGRAM_POST_LINK_HERE"
+            data-instgrm-version="14"
+            style="background:#fff; border:0; margin:0; padding:0; width:100%;">
+          </blockquote>
+        </div>
+
+        <p class="small text-muted mt-3 mb-0">
+          Follow us for recent work, behind-the-scenes, and new pieces.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Contact form -->
+    <div class="col-lg-7">
+      <div class="bg-light p-4 p-md-5 rounded shadow-sm">
+        <h2 class="h4 mb-3">Send us a message</h2>
+        <p class="text-muted mb-4">
+          Fill out the form below and we’ll reply to the email address you provide.
+        </p>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ form.non_field_errors }}
+            </div>
+          {% endif %}
+
+          <div class="mb-3">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+            {{ form.name }}
+            {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors }}</div>{% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors }}</div>{% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.subject.id_for_label }}" class="form-label">
+              Subject <span class="text-muted">(optional)</span>
+            </label>
+            {{ form.subject }}
+            {% if form.subject.errors %}<div class="text-danger small mt-1">{{ form.subject.errors }}</div>{% endif %}
+          </div>
+
+          <div class="mb-4">
+            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+            {{ form.message }}
+            {% if form.message.errors %}<div class="text-danger small mt-1">{{ form.message.errors }}</div>{% endif %}
+          </div>
+
+          <button type="submit" class="btn btn-dark btn-lg w-100">
+            Send Message
+          </button>
+
+          <p class="small text-muted mt-3 mb-0">
+            By submitting this form you agree to be contacted about your enquiry.
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Instagram embed script (only load on this page) -->
+<script async src="https://www.instagram.com/embed.js"></script>
+{% endblock %}
