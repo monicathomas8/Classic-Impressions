@@ -35,3 +35,10 @@ def contact_view(request):
     Simple contact page for the project.
     """
     return render(request, 'contact/contact.html')
+
+
+def custom_service_request_view(request):
+    """
+    Simple custom service request page for the project.
+    """
+    return render(request, 'requests/custom_services.html')
