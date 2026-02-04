@@ -1,0 +1,99 @@
+.home-intro {
+  padding: 6rem 2rem 2rem;
+  color: black;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.home-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 4rem 1.5rem;
+}
+
+.content-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.content-block .text {
+  flex: 1 1 60%;
+  min-width: 300px;
+}
+
+.content-block .image {
+  flex: 1 1 40%;
+  min-width: 300px;
+  transition: transform 0.4s ease;
+}
+
+.content-block .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.hero-text {
+  text-align: center;
+  padding: 3rem 1.5rem 1.5rem;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: #002915;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text span {
+  font-weight: 300;
+  display: block;
+  opacity: 0.7;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+[data-fade] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+[data-fade].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.callout {
+  background: #002915;
+  color: #FAD286;
+  text-align: center;
+  padding: 4rem 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+}
+
+.content-block .image img:hover {
+  transform: scale(1.02);
+}
+
+hr.gold-line {
+  border: none;
+  height: 1px;
+  background-color: #FAD286;
+  width: 80px;
+  margin: 2rem auto 3rem;
+}
