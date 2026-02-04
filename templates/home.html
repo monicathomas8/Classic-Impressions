@@ -4,30 +4,47 @@
 {% block title %}Home | Classic Impressions{% endblock %}
 
 {% block content %}
-<section class="home-intro">
-  
-    <h2>The Art of Architectural Detail</h2>
+<section class="home-sections">
 
-    <p>Welcome to Classic Impressions, where we believe that true elegance lies in the details.
-        In an era of streamlined design, we are devoted to the enduring beauty, proportion, and artistry of classical architecture.
-        
-        For centuries, elements like the cartouche, the corbel, and the decorative niche have transformed interiors from simple spaces into distinguished, 
-        storytelling environments. These are not merely ornaments; they are the vocabulary of lasting design.
+  <div class="content-block">
+    <div class="text">
+      <h2>The Art of Architectural Detail</h2>
+      <p>Welcome to Classic Impressions, where we believe that true elegance lies in the details. In an era of streamlined design, we are devoted to the enduring beauty, proportion, and artistry of classical architecture.</p>
+    </div>
+    <div class="image">
+      <img src="/media/images/drawingroom.jpg" alt="Architectural carving detail">
+    </div>
+  </div>
 
-        At Classic Impressions, we painstakingly recreate these masterpieces. Our dedication to authenticity ensures that every line, curve, 
-        and relief you find in this collection reflects the mastery of the great historical periods, from the Baroque flourish to the restraint of Neoclassicism.
-    </p>
-    <p>Whether you are an interior designer crafting a bespoke luxury residence, an architect restoring a historic property, 
-        or a homeowner seeking a singular statement piece, our collection offers the final, defining touch.
-        
-        We specialize in finishes that evoke history, particularly our signature bronze patina, 
-        which brings the stately permanence of a foundry artifact to your project.
-        Every piece in this catalog is an Impression meant to last, designed to elevate your space with undeniable Classic grandeur.
-        We invite you to explore this catalog and find the perfect architectural detail to complete your enduring vision.
-    </p>
-    <p>
-        <a href="{% url 'products' %}">Collection</a>
-    </p>
+  <div class="content-block reverse">
+    <div class="text">
+      <p>For centuries, elements like the cartouche, the corbel, and the decorative niche have transformed interiors from simple spaces into distinguished, storytelling environments. These are not merely ornaments; they are the vocabulary of lasting design.</p>
+    </div>
+    <div class="image">
+      <img src="/media/images/dressingroom.jpg" alt="Historical niche in wall">
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="text">
+      <p>At Classic Impressions, we painstakingly recreate these masterpieces. Our dedication to authenticity ensures that every line, curve, and relief reflects the mastery of the great historical periods — from the Baroque flourish to the restraint of Neoclassicism.</p>
+    </div>
+    <div class="image">
+      <img src="/media/images/livingroom.jpg" alt="Baroque moulding close-up">
+    </div>
+  </div>
+
+  <div class="content-block reverse">
+    <div class="text">
+      <p>We specialize in finishes that evoke history, particularly our signature bronze patina, which brings the stately permanence of a foundry artifact to your project. Every piece in this catalog is an Impression meant to last, designed to elevate your space with undeniable Classic grandeur.</p>
+      <p><a href="{% url 'products' %}">Explore the Collection</a></p>
+    </div>
+    <div class="image">
+      <img src="/media/images/lunchroom.jpg" alt="Bronze-finished architectural piece">
+    </div>
+  </div>
+
 </section>
+
 
 {% endblock %}

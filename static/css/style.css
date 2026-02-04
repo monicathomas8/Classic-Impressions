@@ -3,8 +3,10 @@ body {
     color: #1f2f26;  /* deep forest green */
 }
 
-main {
-  padding-top: 1.5rem;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #E4E1DA;
 }
 
 /* Container to center content and limit max width */
@@ -36,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Classic Impressions - Minimal Premium Header */
 .ci-navbar {
-    position: sticky;
     top: 0;
     z-index: 1030;
     background: #022902;
@@ -151,10 +152,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home-intro {
+  padding: 6rem 2rem 2rem;
+  color: black;
+  box-sizing: border-box;
   text-align: center;
-  background-image: url('/media/images/unnamed.jpg');
-  background-size: cover;
 }
+
+.home-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 4rem 1.5rem;
+}
+
+.content-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.content-block .text {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.content-block .image {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.content-block .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+
+
 
 /* Classic Impressions Footer */
 .ci-footer {
