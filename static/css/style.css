@@ -6,7 +6,7 @@ body {
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #E4E1DA;
+  background-color: #e9e3cc;
 }
 
 /* Container to center content and limit max width */
@@ -34,6 +34,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair', serif;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.text {
+  color: #1f2f26;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 750px;
+  margin: 0 auto 2rem;
 }
 
 /* Classic Impressions - Minimal Premium Header */

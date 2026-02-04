@@ -1,6 +1,6 @@
 .home-intro {
   padding: 6rem 2rem 2rem;
-  color: black;
+  color: #1f2f26;
   box-sizing: border-box;
   text-align: center;
 }
@@ -93,7 +93,7 @@
 hr.gold-line {
   border: none;
   height: 1px;
-  background-color: #FAD286;
+  background-color: #002915;
   width: 80px;
   margin: 2rem auto 3rem;
 }
