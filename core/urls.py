@@ -12,13 +12,13 @@ urlpatterns = [
     path(
         'insallation/', views.installation, name='installation'
     ),  # Installation guide
-    path('accounts/', include('accounts.urls')),         # User accounts
-    path('admin/', admin.site.urls),                     # Admin site
-    path("orders/", include("orders.urls")),             # Order management
-    path('products/', include('catalogue.urls')),        # Product catalogue
-    path('cart/', include('cart.urls')),                 # Shopping cart
-    path('contact/', include('contact.urls')),           # Contact form
-    path('custom-services/', include('requests.urls')),  # Custom service
+    path('accounts/', include('accounts.urls')),          # User accounts
+    path('admin/', admin.site.urls),                      # Admin site
+    path("orders/", include("orders.urls")),              # Order management
+    path('products/', include('catalogue.urls')),         # Product catalogue
+    path('cart/', include('cart.urls')),                  # Shopping cart
+    path('contact/', include('contact.urls')),            # Contact form
+    path('custom-services/', include('enquiries.urls')),  # Custom service
 ]
 
 if settings.DEBUG:

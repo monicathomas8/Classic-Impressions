@@ -12,8 +12,8 @@ def custom_service_request_view(request):
                 request,
                 "Thank you! We’ve received your request and will be in touch."
             )
-            return redirect("requests:custom_services")
+            return redirect("enquiries:custom_services")
     else:
         form = CustomServiceRequestForm()
 
-    return render(request, "requests/custom_services.html", {"form": form})
+    return render(request, "enquiries/custom_services.html", {"form": form})

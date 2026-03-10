@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from cart.cart import Cart
 from .models import Order, OrderItem
 from django.contrib.auth.decorators import login_required
+import stripe
+from django.conf import settings
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def checkout(request):
-    """
-    Show checkout page and create an order from the cart on POST.
-    """
     cart = Cart(request)
     errors = []
     form_data = {}
@@ -16,7 +17,6 @@ def checkout(request):
         if len(cart) == 0:
             return redirect("cart_detail")
 
-        # Grab fields from the form
         form_data = {
             "full_name": request.POST.get("full_name", "").strip(),
             "email": request.POST.get("email", "").strip(),
@@ -27,14 +27,9 @@ def checkout(request):
             "country": request.POST.get("country", "").strip(),
         }
 
-        # Simple required field checks
         required_fields = [
-            "full_name",
-            "email",
-            "address_line1",
-            "city",
-            "postcode",
-            "country",
+            "full_name", "email", "address_line1",
+            "city", "postcode", "country",
         ]
         for field in required_fields:
             if not form_data[field]:
@@ -42,13 +37,21 @@ def checkout(request):
                 errors.append(f"{field_name} is required.")
 
         if errors:
-            # Re-render page with errors + form data
-            context = {
+            return render(request, "orders/checkout.html", {
                 "cart": cart,
                 "errors": errors,
                 "form_data": form_data,
-            }
-            return render(request, "orders/checkout.html", context)
+            })
+
+        # Create Stripe payment intent
+        total_amount = sum(
+            item["price"] * item["quantity"] for item in cart
+        )
+        intent = stripe.PaymentIntent.create(
+            amount=int(total_amount * 100),
+            currency="gbp",
+            metadata={"email": form_data["email"]},
+        )
 
         # Create the order
         order = Order.objects.create(
@@ -60,9 +63,9 @@ def checkout(request):
             city=form_data["city"],
             postcode=form_data["postcode"],
             country=form_data["country"],
+            stripe_payment_intent=intent.id,
         )
 
-        # Create order items from the cart
         for item in cart:
             OrderItem.objects.create(
                 order=order,
@@ -71,32 +74,32 @@ def checkout(request):
                 price=item["price"],
             )
 
-        # Clear the cart
         cart.clear()
-
         return redirect("order_success", order_id=order.id)
 
     # GET request
-    context = {
+    total_amount = sum(
+        item["price"] * item["quantity"] for item in cart
+    )
+    intent = stripe.PaymentIntent.create(
+        amount=int(total_amount * 100),
+        currency="gbp",
+    )
+    return render(request, "orders/checkout.html", {
         "cart": cart,
         "errors": errors,
         "form_data": form_data,
-    }
-    return render(request, "orders/checkout.html", context)
+        "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
+        "client_secret": intent.client_secret,
+    })
 
 
 def order_success(request, order_id):
-    """
-    Simple order confirmation page.
-    """
     order = get_object_or_404(Order, id=order_id)
     return render(request, "orders/order_success.html", {"order": order})
 
 
 @login_required
 def my_orders(request):
-    """
-    Show a list of orders for the logged-in user.
-    """
     orders = Order.objects.filter(user=request.user).order_by("-created_at")
     return render(request, "orders/my_orders.html", {"orders": orders})
