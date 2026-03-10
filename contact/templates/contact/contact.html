@@ -105,6 +105,12 @@
           Fill out the form below and we’ll reply to the email address you provide.
         </p>
 
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-success text-center mb-4">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
         <form method="post" novalidate>
           {% csrf_token %}
 
@@ -128,7 +134,7 @@
 
           <div class="mb-3">
             <label for="{{ form.subject.id_for_label }}" class="form-label">
-              Subject <span class="text-muted">(optional)</span>
+              Subject
             </label>
             {{ form.subject }}
             {% if form.subject.errors %}<div class="text-danger small mt-1">{{ form.subject.errors }}</div>{% endif %}

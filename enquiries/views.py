@@ -12,7 +12,7 @@ def custom_service_request_view(request):
                 request,
                 "Thank you! We’ve received your request and will be in touch."
             )
-            return redirect("enquiries:custom_services")
+            return redirect("custom_services")
     else:
         form = CustomServiceRequestForm()
 
