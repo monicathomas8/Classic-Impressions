@@ -4,6 +4,7 @@ from .models import Order, OrderItem
 from django.contrib.auth.decorators import login_required
 import stripe
 from django.conf import settings
+from django.core.mail import send_mail
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -75,6 +76,22 @@ def checkout(request):
             )
 
         cart.clear()
+
+        # Send confirmation email to customer
+        message = (
+            f"Hi {order.full_name},\n\n"
+            f"Thank you for your order!\n\n"
+            f"Order #{order.id} has been received and we will be "
+            f"in touch shortly.\n\n"
+            f"Thank you for shopping with Classic Impressions."
+        )
+        send_mail(
+            f"Order Confirmation - Classic Impressions #{order.id}",
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [order.email],
+        )
+
         return redirect("order_success", order_id=order.id)
 
     # GET request
