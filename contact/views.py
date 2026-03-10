@@ -15,11 +15,26 @@ def contact_view(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
 
+            # Notify client
             send_mail(
                 f"New enquiry from {name}: {subject}",
                 f"From: {name}\nEmail: {email}\n\nMessage:\n{message}",
                 settings.DEFAULT_FROM_EMAIL,
                 [settings.EMAIL_HOST_USER],
+            )
+
+            # Confirmation email to customer
+            send_mail(
+                "We've received your message - Classic Impressions",
+                f"Hi {name},\n\n"
+                f"Thank you for getting in touch!\n\n"
+                f"We've received your message regarding '{subject}':\n\n"
+                f"{message}\n\n"
+                f"We will respond within 48 hours.\n\n"
+                f"Kind regards,\n"
+                f"Classic Impressions",
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
             )
 
             messages.success(
