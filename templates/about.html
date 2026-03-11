@@ -1,102 +1,159 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/about.css' %}">{% endblock %}
 
 {% block title %}Craftsmanship{% endblock %}
 
 {% block content %}
-<section>
-    <h1>Craftsmanship</h1>
-    <div class="section-card">
-        
-        <h2>The Art of Timeless Elegance</h2>
-        <p>
+
+<section class="about-sections">
+    <section class="about-intro">
+        <h1><strong>Craftsmanship</strong></h1>
+        <hr class="gold-line">
+        <p class="about-text">
             At Classic Impressions, our commitment to craftsmanship is the cornerstone of our brand.
             Each piece we create is a testament to the fusion of traditional artistry and modern innovation,
             resulting in decorative elements that not only enhance spaces but also stand the test of time.
         </p>
-    </div>
-<div class="section-card">
-    <h3>The Foundation of Quality</h3>
-    <p>
-        The enduring beauty of a Classic Impressions piece is rooted in the quality of its
-        components and the precision of its finish. We utilize advanced materials and traditional
-        hand-finishing techniques to ensure every ornament retains the sharpest detail while offering superior
-        durability.
-    </p>
-</div>
-<div class="section-card">
-    <h3>Materials That Stand the Test of Time</h3>
-    <p>
-        All our decorative pieces are cast using a proprietary High-Density Architectural Composite resin.
-        This material is chosen specifically for its unique advantages in producing fine architectural detail
-    <ul>
-        <li>
-            Exceptional Detail Retention: The low-shrink nature of the composite perfectly captures the intricate
-            undercuts
-            and delicate lines of the original master carvings, providing an unmatched fidelity to classical form.
-        </li>
-        <li>
-            Lightweight Strength: Our composite is engineered to be significantly lighter than traditional materials
-            like stone or metal, facilitating easier handling and installation without compromising structural
-            integrity.
-        </li>
-        <li>
-            Eco-Friendly Composition: The composite is manufactured with sustainability in mind, utilizing recycled
-            content and non-toxic components wherever possible.
-        </li>
-        <li>
-            Durability and Stability: Unlike traditional plaster or gypsum, our composite is highly resistant
-            to chipping, cracking, and moisture damage. It is dimensionally stable, making it ideal
-            for installation in diverse interior environments.
-        </li>
-        <li>
-            Versatile Weight: Engineered to provide a satisfying, substantial feel without the prohibitive
-            weight of solid stone or metal, simplifying installation while maintaining a sense of luxury.
-        </li>
-    </ul>
-    </p>
-</div>
+    </section>
 
-<div class="section-card">
-    <h3>Hand-Finished Excellence</h3>
-    <p>
-        Our Signature Finishes: Applied by Hand.
-        The final "Impression" is achieved through a multi-stage, hand-applied finishing process.
-    </p>
-    <h4>The Patinated Bronze Collection</h4>
-    <p>
-        This is the finish that defines our brand, offering the noble,
-        aged elegance of a foundry piece without the cost or corrosive effects of real metal.
-    <ul>
-        <li>
-            The Foundation: Each piece is treated with an initial metal-powder base coat.
-        </li>
-        <li>
-            The Patina: Our artisans meticulously apply a series of washes, glazes,
-            and dry-brush techniques to mimic the natural oxidation and wear of genuine bronze over decades.
-        </li>
-        <li>
-            Sealed for Permanence: The finish is cured and sealed with a protective layer,
-            ensuring color fastness and easy maintenance, allowing the piece to retain its rich lustre for years to
-            come.
-        </li>
-    </ul>
-    </p>
-    <h4>The Bespoke Finishes</h4>
-    <p>
-        In addition to our signature bronze, we offer specialist finishes crafted
-        to integrate seamlessly into any design scheme, including:
-        <ul>
-            <li>
-                Aged Limestone: A textural, matte finish mimicking centuries-old carved stone.
-            <li>
-                Verdigris Copper: A vibrant, oxidized green-blue patina for a dramatic, antique effect.
-            </li>
-            <li>
-                Faux Marble: Expertly veined and polished to replicate the appearance of Carrara or Statuario marble.
-            </li>
-        </ul>
-    </p>
-</div>
+    <section class="about-content">
+        <div class="section-card">
+            <h4>The Foundation of Quality</h4>
+            <p>
+                The enduring beauty of a Classic Impressions piece is rooted in the quality 
+                of its components and the precision of its finish. We utilize advanced 
+                materials and traditional hand-finishing techniques to ensure every 
+                ornament retains the sharpest detail while offering superior durability.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Materials That Stand the Test of Time</h4>
+            <p>
+                All our decorative pieces are cast using a proprietary High-Density 
+                Architectural Composite resin. This material is chosen specifically 
+                for its unique advantages in producing fine architectural detail.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Exceptional Detail Retention</h4>
+            <p>
+                The low-shrink nature of the composite perfectly captures 
+                the intricate undercuts and delicate lines of the original master 
+                carvings, providing an unmatched fidelity to classical form.
+            </p>
+         </div>
+
+        <div class="section-card">
+            <h4>Lightweight Strength</h4>
+            <p>
+                Our composite is engineered to be significantly lighter 
+                than traditional materials like stone or metal, facilitating 
+                easier handling and installation without compromising structural integrity.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Eco-Friendly Composition</h4>
+            <p>
+                The composite is manufactured with sustainability in mind, 
+                utilizing recycled content and non-toxic components wherever possible.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Durability and Stability</h4>
+            <p>
+                Unlike traditional plaster or gypsum, our composite is highly 
+                resistant to chipping, cracking, and moisture damage. It is dimensionally stable, 
+                making it ideal for installation in diverse interior environments.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Versatile Weight</h4>
+            <p>
+                 Engineered to provide a satisfying, substantial feel without the 
+                prohibitive weight of solid stone or metal, simplifying installation while 
+                maintaining a sense of luxury.
+            </p>
+        </div>
+        
+        <div class="section-card">
+            <h4>Hand-Finished Excellence</h4>
+            <p>
+                Our Signature Finishes: Applied by Hand. 
+                The final "Impression" is achieved through a 
+                multi-stage, hand-applied finishing process.
+            </p>
+        </div>
+        <div class="section-card">
+            <h4>The Patinated Bronze Collection</h4>
+            <p>
+                This is the finish that defines our brand, 
+                offering the noble, aged elegance of a foundry 
+                piece without the cost or corrosive effects of real metal.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>The Foundation</h4>
+            <p>
+                Each piece is treated with an initial metal-powder base coat.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>The Patina</h4>
+            <p>
+                Our artisans meticulously apply a series of washes, glazes, 
+                and dry-brush techniques to mimic the natural oxidation and wear of 
+                genuine bronze over decades.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Sealed for Permanence</h4>
+            <p>
+                The finish is cured and sealed with a protective layer, 
+                ensuring color fastness and easy maintenance, allowing the piece to 
+                retain its rich lustre for years to come.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>The Bespoke Finishes</h4>
+            <p>
+                In addition to our signature bronze, we offer specialist 
+                finishes crafted to integrate seamlessly into any design scheme.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Aged Limestone</h4>
+            <p>
+                 A textural, matte finish mimicking centuries-old carved stone.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Verdigris Copper</h4>
+            <p>
+                A vibrant, oxidized green-blue patina for a dramatic, antique effect.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h4>Faux Marble</h4>
+            <p>
+                Expertly veined and polished to replicate the appearance of Carrara or Statuario marble.
+            </p>
+        </div>
+         
+    </section>
 </section>
 
 
