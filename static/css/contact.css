@@ -1,0 +1,39 @@
+.btn-custom {
+    background-color: #022902;
+    color: #968f2b;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-custom:hover {
+    background-color: #968f2b;
+    color: #022902;
+}
+
+.contact-sections {
+  padding: 6rem 2rem 2rem;
+  color: #1f2f26;
+  box-sizing: border-box;
+  text-align: center;
+  background-image: url('/media/images/xmasroom.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.contact-sections::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(248, 248, 248, 0.37);
+    z-index: 0;
+  }
+
+  .contact-container {
+    position: relative !important;
+    z-index: 2 !important;
+}
