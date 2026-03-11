@@ -1,3 +1,4 @@
+
 .home-intro {
   padding: 6rem 2rem 2rem;
   color: #1f2f26;
@@ -6,11 +7,23 @@
 }
 
 .home-sections {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding: 4rem 1.5rem;
+  background-image: url('/media/images/lunchroom.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
+
+.home-sections::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(248, 248, 248, 0.603);
+    z-index: 0;
+  }
 
 .content-block {
   display: flex;
@@ -19,6 +32,8 @@
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .content-block.reverse {
@@ -30,9 +45,20 @@
   min-width: 300px;
 }
 
+.text {
+  color: #1f2f26;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.65;
+  max-width: 750px;
+  margin: 0 auto 2rem;
+  z-index: 2;
+}
+
 .content-block .image {
   flex: 1 1 40%;
   min-width: 300px;
+  z-index: 2;
   transition: transform 0.4s ease;
 }
 
@@ -46,6 +72,8 @@
 .hero-text {
   text-align: center;
   padding: 3rem 1.5rem 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-text h1 {
@@ -54,11 +82,14 @@
   line-height: 1.2;
   color: #002915;
   margin-bottom: 0.5rem;
+  z-index: 2;
 }
 
 .hero-text span {
   font-weight: 300;
   display: block;
+  position: relative;
+  z-index: 2;
   opacity: 0.7;
   font-size: 1.1rem;
   letter-spacing: 0.08em;
@@ -77,6 +108,8 @@
 }
 
 .callout {
+  position: relative;
+  z-index: 2;
   background: #002915;
   color: #FAD286;
   text-align: center;
@@ -91,9 +124,12 @@
 }
 
 hr.gold-line {
+  position: relative;
+  z-index: 2;
   border: none;
   height: 1px;
   background-color: #002915;
   width: 80px;
   margin: 2rem auto 3rem;
 }
+
