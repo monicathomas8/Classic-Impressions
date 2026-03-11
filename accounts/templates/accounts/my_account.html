@@ -1,32 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}My Account{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/accounts.css' %}">{% endblock %}
+
+{% block title %}My Account | Classic Impressions{% endblock %}
 
 {% block content %}
-    <h2>My Account</h2>
+<section class="accounts-section">
+  <div class="accounts-card" style="max-width: 700px;">
 
-    <p>Welcome back, {{ user.username }}!</p>
+    <h1 class="accounts-title">My Account</h1>
+    <p class="accounts-subtitle">Welcome back, {{ user.username }}</p>
 
-    <p>This is your account dashboard. More features will appear here later.</p>
+    <div class="dashboard-section">
+      <h3 class="dashboard-heading">My Orders</h3>
 
-    <h3>My Orders</h3>
+      {% if orders %}
+        {% for order in orders %}
+        <div class="order-item">
+          <div class="order-meta">
+            <span class="order-id">Order #{{ order.id }}</span>
+            <span class="order-status">{{ order.status }}</span>
+          </div>
+          <p class="order-date">Placed on {{ order.created_at|date:"j M Y, H:i" }}</p>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-orders">You have no orders yet.</p>
+      {% endif %}
+    </div>
 
-    {% if orders %}
-        <ul>
-            {% for order in orders %}
-                <li>
-                    Order #{{ order.id }} — {{ order.status }}  
-                    <br>
-                    Placed on: {{ order.created_at|date:"j M Y, H:i" }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You have no orders yet.</p>
-    {% endif %}
+    <a href="{% url 'products' %}" class="accounts-btn" style="display:block; text-align:center; text-decoration:none; margin-top: 2rem;">
+      Browse Collection
+    </a>
 
-    <p>
-        <a href="{% url 'products' %}">Go to products</a>
-    </p>
-
+  </div>
+</section>
 {% endblock %}
