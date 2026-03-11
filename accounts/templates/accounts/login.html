@@ -1,14 +1,25 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/accounts.css' %}">{% endblock %}
+
+{% block title %}Login | Classic Impressions{% endblock %}
 
 {% block content %}
-  <h1>Log in</h1>
+<section class="accounts-section">
+  <div class="accounts-card">
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+    <h1 class="accounts-title">Welcome Back</h1>
+    <p class="accounts-subtitle">Sign in to your account</p>
 
-    <button type="submit">Log in</button>
-  </form>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="accounts-btn">Log In</button>
+    </form>
 
-  <p>Need an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
+    <p class="accounts-link">Need an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+
+  </div>
+</section>
 {% endblock %}
