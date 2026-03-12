@@ -1,37 +1,73 @@
 {% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/order_success.css' %}">
+{% endblock %}
 
 {% block title %}Order Complete{% endblock %}
 
 {% block content %}
-    <h2>Thank you for your order!</h2>
+<div class="success-container">
 
-    <p>Your order number is <strong>#{{ order.id }}</strong>.</p>
+    <div class="success-header">
+        <h2>Thank you for your order!</h2>
+        <p>Your order number is <strong>#{{ order.id }}</strong>.</p>
+        <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+    </div>
 
-    <h3>Shipping Details</h3>
-    <p>
-        {{ order.full_name }}<br>
-        {{ order.address_line1 }}<br>
-        {% if order.address_line2 %}
-            {{ order.address_line2 }}<br>
-        {% endif %}
-        {{ order.city }}<br>
-        {{ order.postcode }}<br>
-        {{ order.country }}
-    </p>
+    <div class="success-box">
+        <h3>Order Items</h3>
+        <ul>
+            {% for item in order.items.all %}
+                <li>
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        </div>
+                        <div class="cart-item-details">
+                            <strong>{{ item.product.name }}</strong>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <p>Price: £{{ item.price }}</p>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-    <h3>Order Items</h3>
-    <ul>
-        {% for item in order.items.all %}
-            <li>
-                {{ item.quantity }} × {{ item.product.name }}  
-                — £{{ item.price }}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="success-box">
+        <h3>Billing Address</h3>
+        <p>
+            {{ order.full_name }}<br>
+            {{ order.address_line1 }}<br>
+            {% if order.address_line2 %}{{ order.address_line2 }}<br>{% endif %}
+            {{ order.city }}<br>
+            {{ order.postcode }}<br>
+            {{ order.country }}
+        </p>
+    </div>
 
-    <p><strong>Order Status:</strong> {{ order.get_status_display }}</p>
+    {% if order.ship_to_different_address %}
+    <div class="success-box">
+        <h3>Shipping Address</h3>
+        <p>
+            {{ order.shipping_full_name }}<br>
+            {{ order.shipping_address_line1 }}<br>
+            {% if order.shipping_address_line2 %}{{ order.shipping_address_line2 }}<br>{% endif %}
+            {{ order.shipping_city }}<br>
+            {{ order.shipping_postcode }}<br>
+            {{ order.shipping_country }}
+        </p>
+    </div>
+    {% endif %}
 
-    <p>
-        <a href="{% url 'products' %}">Continue shopping</a>
-    </p>
+    <div class="success-actions">
+        <a href="{% url 'products' %}" class="btn btn-custom">Continue shopping</a>
+        <a href="{% url 'my_orders' %}" class="btn btn-custom">View Order History</a>
+        <a href="{% url 'my_account' %}" class="btn btn-custom">View My Account</a>
+    </div>
+
+</div>
 {% endblock %}

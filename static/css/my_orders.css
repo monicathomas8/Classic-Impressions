@@ -1,0 +1,72 @@
+/* Page layout */
+.success-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Success header */
+.success-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Summary boxes */
+.success-box {
+    background-color: #ffffff;
+    border: 1px solid #1f2f26;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
+
+.success-box h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Order items list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Actions */
+.success-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-custom {
+    background-color: #022902;
+    color: #968f2b;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-custom:hover {
+    background-color: #968f2b;
+    color: #022902;
+}
+
+.cart-item-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
