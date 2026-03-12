@@ -1,132 +1,98 @@
 {% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/checkout.css' %}">{% endblock %}
 
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
-<h2>Checkout</h2>
+<div class="checkout-container">
+    <h2>Checkout</h2>
 
-{% if errors %}
-    <ul style="color: red;">
-        {% for error in errors %}
-            <li>{{ error }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+    {% if cart|length > 0 %}
+    <div class="checkout-grid">
 
-{% if cart|length > 0 %}
-    <h3>Your details</h3>
+        <div class="checkout-form">
+            <h3>Your details</h3>
+            <form method="post">
+                {% csrf_token %}
 
-    <form method="post">
-        {% csrf_token %}
+                <p>
+                    <label for="id_full_name">Full name:</label><br>
+                    <input type="text" id="id_full_name" name="full_name" value="{{ form_data.full_name|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_full_name">Full name:</label><br>
-            <input
-                type="text"
-                id="id_full_name"
-                name="full_name"
-                value="{{ form_data.full_name|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <p>
+                    <label for="id_email">Email:</label><br>
+                    <input type="email" id="id_email" name="email" value="{{ form_data.email|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_email">Email:</label><br>
-            <input
-                type="email"
-                id="id_email"
-                name="email"
-                value="{{ form_data.email|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <p>
+                    <label for="id_address_line1">Address line 1:</label><br>
+                    <input type="text" id="id_address_line1" name="address_line1" value="{{ form_data.address_line1|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_address_line1">Address line 1:</label><br>
-            <input
-                type="text"
-                id="id_address_line1"
-                name="address_line1"
-                value="{{ form_data.address_line1|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <p>
+                    <label for="id_address_line2">Address line 2 (optional):</label><br>
+                    <input type="text" id="id_address_line2" name="address_line2" value="{{ form_data.address_line2|default_if_none:'' }}">
+                </p>
 
-        <p>
-            <label for="id_address_line2">Address line 2 (optional):</label><br>
-            <input
-                type="text"
-                id="id_address_line2"
-                name="address_line2"
-                value="{{ form_data.address_line2|default_if_none:'' }}"
-            >
-        </p>
+                <p>
+                    <label for="id_city">City:</label><br>
+                    <input type="text" id="id_city" name="city" value="{{ form_data.city|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_city">City:</label><br>
-            <input
-                type="text"
-                id="id_city"
-                name="city"
-                value="{{ form_data.city|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <p>
+                    <label for="id_postcode">Postcode:</label><br>
+                    <input type="text" id="id_postcode" name="postcode" value="{{ form_data.postcode|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_postcode">Postcode:</label><br>
-            <input
-                type="text"
-                id="id_postcode"
-                name="postcode"
-                value="{{ form_data.postcode|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <p>
+                    <label for="id_country">Country:</label><br>
+                    <input type="text" id="id_country" name="country" value="{{ form_data.country|default_if_none:'' }}" required>
+                </p>
 
-        <p>
-            <label for="id_country">Country:</label><br>
-            <input
-                type="text"
-                id="id_country"
-                name="country"
-                value="{{ form_data.country|default_if_none:'' }}"
-                required
-            >
-        </p>
+                <div id="card-element"></div>
+                <div id="card-errors"></div>
 
-        <!-- Stripe card element -->
-        <div id="card-element" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+                <button type="submit" id="submit-button" class="btn btn-custom">Place Order</button>
+            </form>
         </div>
-        <div id="card-errors" style="color: red; margin-bottom: 10px;"></div>
 
-        <button type="submit" id="submit-button">Place Order</button>
-    </form>
+        <div class="checkout-summary">
+            <h3>Order Summary</h3>
+            <ul>
+                {% for item in cart %}
+                    <li>
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            </div>
+                            <div class="cart-item-details">
+                                <strong>{{ item.product.name }}</strong>
+                                <p>Quantity: {{ item.quantity }}</p>
+                                <p>Price: £{{ item.price }}</p>
+                                <p>Line Total: £{{ item.total_price }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="order-total">
+                <strong>Order Total: £{{ cart.get_total_price }}</strong>
+            </div>
+            <div class="checkout-actions">
+                <a href="{% url 'cart_detail' %}" class="btn btn-custom">Back to cart</a>
+            </div>
+        </div>
 
-    <hr>
-
-    <h3>Order Summary</h3>
-
-    <ul>
-        {% for item in cart %}
-            <li>
-                <strong>{{ item.product.name }}</strong><br>
-                Quantity: {{ item.quantity }}<br>
-                Price: £{{ item.price }}<br>
-                Line Total: £{{ item.total_price }}
-            </li>
-            <hr>
-        {% endfor %}
-    </ul>
-
-    <p><strong>Order Total: £{{ cart.get_total_price }}</strong></p>
-
-    <p><a href="{% url 'cart_detail' %}">Back to cart</a></p>
-
-{% else %}
-    <p>Your cart is empty.</p>
-    <p><a href="{% url 'products' %}">Back to products</a></p>
-{% endif %}
+    </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <a href="{% url 'products' %}" class="btn btn-custom">Back to products</a>
+    {% endif %}
+</div>
 
 <!-- Stripe JS -->
 <script src="https://js.stripe.com/v3/"></script>

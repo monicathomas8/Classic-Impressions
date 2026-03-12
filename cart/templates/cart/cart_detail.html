@@ -1,48 +1,52 @@
 {% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
 
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/cart_detail.css' %}">{% endblock %}
 {% block title %}Your Cart{% endblock %}
 
 {% block content %}
-    <h2>Your Cart</h2>
-
+<div class="cart-container">
     {% if cart|length > 0 %}
-        <ul>
-            {% for item in cart %}
+        <div class="cart-summary-box">
+            <h2>Your Cart</h2>
+            <ul>
+                {% for item in cart %}
                 <li>
-                    <strong>{{ item.product.name }}</strong><br>
-                    Quantity:
-                    <form action="{% url 'update_cart' item.product.id %}" method="post" style="display: inline;">
-                        {% csrf_token %}
-                        <input
-                            type="number"
-                            name="quantity"
-                            min="0"
-                            value="{{ item.quantity }}"
-                            style="width: 60px;"
-                        >
-                        <button type="submit">Update</button>
-                    </form>
-                    <br>
-                    Price: £{{ item.price }}<br>
-                    Total: £{{ item.total_price }}
-
-                    <form action="{% url 'remove_from_cart' item.product.id %}" method="post" style="margin-top: 5px;">
-                        {% csrf_token %}
-                        <button type="submit">Remove</button>
-                    </form>
-                    
-                    <hr>
-
-            {% endfor %}
-        </ul>
-
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        </div>
+                        <div class="cart-item-details">
+                            <strong>{{ item.product.name }}</strong>
+                            <p>Price: £{{ item.price }}</p>
+                            <p>Total: £{{ item.total_price }}</p>
+                            <form action="{% url 'update_cart' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" min="0" value="{{ item.quantity }}">
+                                <button type="submit" class="btn btn-custom">Update</button>
+                            </form>
+                            <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-custom">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         <p><strong>Cart Total: £{{ cart.get_total_price }}</strong></p>
-
         <p>
-            <a href="{% url 'checkout' %}">Proceed to checkout</a>
+            <a href="{% url 'checkout' %}" class="btn btn-custom">Proceed to checkout</a>
         </p>
 
-    {% else %}
-        <p>Your cart is empty.</p>
-    {% endif %}
+
+            {% else %}
+            <div class="cart-summary-box">
+                <h4>Your cart is empty.</h4>
+                <a href="{% url 'products' %}" class="btn btn-custom">Continue shopping</a>
+            {% endif %}
+        </div>
+</div>
 {% endblock %}

@@ -1,0 +1,138 @@
+/* Each cart item row */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Image container */
+.cart-item-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Details column */
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.cart-item-details p {
+    margin: 0;
+}
+
+.btn-custom {
+    background-color: #022902;
+    color: #968f2b;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-custom:hover {
+    background-color: #968f2b;
+    color: #022902;
+}
+
+/* Page layout */
+.checkout-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Two column layout */
+.checkout-grid {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Form column */
+.checkout-form {
+    flex: 1;
+}
+
+/* Order summary column */
+.checkout-summary {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #1f2f26;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #1f2f26;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #1f2f26;
+    font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #968f2b;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    color: #1f2f26;
+}
+
+/* Stripe card element */
+#card-element {
+    padding: 10px;
+    border: 1px solid #1f2f26;
+    border-radius: 4px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Order summary list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Order total */
+.order-total {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border-top: 1px solid #1f2f26;
+    padding-top: 10px;
+}
+
+/* Buttons */
+.checkout-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Mobile - stack columns */
+@media (max-width: 768px) {
+    .checkout-grid {
+        flex-direction: column;
+    }
+}
+
