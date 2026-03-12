@@ -34,6 +34,7 @@
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  padding: 0 3rem;
 }
 
 .content-block.reverse {
@@ -60,6 +61,7 @@
   min-width: 300px;
   z-index: 2;
   transition: transform 0.4s ease;
+  padding:  1rem;
 }
 
 .content-block .image img {
@@ -113,7 +115,7 @@
   background: #002915;
   color: #FAD286;
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   font-family: 'Playfair Display', serif;
   font-size: 1.8rem;
   letter-spacing: 0.03em;
@@ -133,3 +135,21 @@ hr.gold-line {
   margin: 2rem auto 3rem;
 }
 
+.btn-custom {
+    background-color: #022902;
+    color: #968f2b;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-custom:hover {
+    background-color: #968f2b;
+    color: #022902;
+}
+
+.hero-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}

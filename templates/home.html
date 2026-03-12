@@ -8,8 +8,8 @@
 {% block content %}
 <section class="home-sections">
     <section class="hero-text">
-        <h1><span>The Art of</span><br><strong>Architectural Detail</strong></h1>
-        <hr class="gold-line">
+        <h1>Classic Impressions<br><span>The Art of Architectural Detail</span></h1>
+        <img src="/media/images/logo.png" alt="Classic Impressions Logo" class="hero-logo">
     </section>
     
   <div class="content-block">
@@ -46,7 +46,7 @@
   <div class="content-block reverse">
     <div class="text">
       <p>We specialize in finishes that evoke history, particularly our signature bronze patina, which brings the stately permanence of a foundry artifact to your project. Every piece in this catalog is an Impression meant to last, designed to elevate your space with undeniable Classic grandeur.</p>
-      <p><a href="{% url 'products' %}">Explore the Collection</a></p>
+      <a href="{% url 'products' %}" class="btn btn-custom">Explore the Collection</a>
     </div>
     <div class="image">
       <img src="/media/images/lunchroom.jpg" alt="Bronze-finished architectural piece">

@@ -36,6 +36,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.05rem 0;
 }
 
+.nav-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: brightness(5);
+}
+
 .ci-brand {
     font-family: "Playfair Display", serif;
     font-size: 1.55rem;
@@ -134,6 +142,7 @@ h1, h2, h3, h4, h5, h6 {
     width: fit-content;
 }
 
+
 .section-card {
   background: #f6f4ef;
   padding: 2.5rem 2rem;
@@ -143,10 +152,16 @@ h1, h2, h3, h4, h5, h6 {
 /* Classic Impressions Footer */
 .ci-footer {
   background: #022902; /* slightly deeper green than body */
-  margin-top: 4rem;
-  padding: 3rem 0 1.5rem;
+  padding: 3rem 3rem 1.5rem;
   color: #968f2b;
   border-top: 1px solid rgba(31,47,38,0.12);
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+    filter: brightness(5);
 }
 
 /* Grid layout */
