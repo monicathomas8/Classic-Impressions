@@ -1,38 +1,94 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cloudinary %}
 
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/accounts.css' %}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/my_account.css' %}">{% endblock %}
+
 
 {% block title %}My Account | Classic Impressions{% endblock %}
 
 {% block content %}
 <section class="accounts-section">
-  <div class="accounts-card" style="max-width: 700px;">
+  <div class="accounts-card">
 
     <h1 class="accounts-title">My Account</h1>
     <p class="accounts-subtitle">Welcome back, {{ user.username }}</p>
 
-    <div class="dashboard-section">
-      <h3 class="dashboard-heading">My Orders</h3>
+    <!-- Orders section -->
+    <div class="dashboard-grid">
+      <div class="dashboard-section">
+        <h3 class="dashboard-heading">Recent Orders</h3>
 
-      {% if orders %}
-        {% for order in orders %}
-        <div class="order-item">
-          <div class="order-meta">
-            <span class="order-id">Order #{{ order.id }}</span>
-            <span class="order-status">{{ order.status }}</span>
+        {% if orders %}
+          <ul>
+            {% for order in orders %}
+            <li>
+              <div class="cart-item">
+                <div class="cart-item-image">
+                  {% with order.items.first as first_item %}
+                    {% if first_item %}
+                      <img src="{{ first_item.product.image.url }}" alt="{{ first_item.product.name }}">
+                    {% endif %}
+                  {% endwith %}
+                </div>
+                <div class="cart-item-details">
+                  <strong>Order #{{ order.id }}</strong>
+                  <p>Placed: {{ order.created_at|date:"j M Y, H:i" }}</p>
+                  <p>Status: {{ order.get_status_display }}</p>
+                  <p>Items: {{ order.items.count }}</p>
+                  <a href="{% url 'order_success' order.id %}" class="btn btn-custom">View Order</a>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          <div style="text-align:center; margin-top: 20px;">
+            <a href="{% url 'my_orders' %}" class="btn btn-custom">View All Orders</a>
           </div>
-          <p class="order-date">Placed on {{ order.created_at|date:"j M Y, H:i" }}</p>
-        </div>
-        {% endfor %}
-      {% else %}
-        <p class="no-orders">You have no orders yet.</p>
-      {% endif %}
-    </div>
+        {% else %}
+          <p class="no-orders">You have no orders yet.</p>
+          <a href="{% url 'products' %}" class="btn btn-custom">Browse Collection</a>
+        {% endif %}
+      </div>
+    
 
-    <a href="{% url 'products' %}" class="accounts-btn" style="display:block; text-align:center; text-decoration:none; margin-top: 2rem;">
-      Browse Collection
-    </a>
+      <!-- Contact form section -->
+      <div class="dashboard-section">
+        <h3 class="dashboard-heading">Get In Touch</h3>
+        <p>Need to make changes to an order or have a question? Send us a message below.</p>
+
+        {% if messages %}
+          {% for message in messages %}
+            <p style="color: green;">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          <p>
+            <label>Name:</label><br>
+            {{ form.name }}
+          </p>
+          <p>
+            <label>Email:</label><br>
+            {{ form.email }}
+          </p>
+          <p>
+            <label>Subject:</label><br>
+            {{ form.subject }}
+          </p>
+          <p>
+            <label>Message:</label><br>
+            {{ form.message }}
+          </p>
+          <button type="submit" class="btn btn-custom">Send Message</button>
+        </form>
+      </div>
+      <div style="text-align:center; margin-top: 2rem;">
+        <a href="{% url 'products' %}" class="btn btn-custom">Browse Collection</a>
+      </div>
+
+    </div>
 
   </div>
 </section>
