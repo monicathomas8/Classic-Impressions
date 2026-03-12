@@ -15,6 +15,7 @@
 
         <div class="checkout-form">
             <h3>Your details</h3>
+            <p>Please enter your details and payment information to complete your order.</p>
             <form method="post">
                 {% csrf_token %}
 
@@ -52,6 +53,47 @@
                     <label for="id_country">Country:</label><br>
                     <input type="text" id="id_country" name="country" value="{{ form_data.country|default_if_none:'' }}" required>
                 </p>
+                <!-- Shipping address -->
+                <div style="margin-top: 20px;">
+                    <label>
+                        <input type="checkbox" id="ship-to-different" name="ship_to_different_address">
+                        Ship to a different address?
+                    </label>
+                </div>
+
+                <div id="shipping-fields" style="display: none;">
+                    <h3>Shipping Address</h3>
+
+                    <p>
+                        <label for="id_shipping_full_name">Full name:</label><br>
+                        <input type="text" id="id_shipping_full_name" name="shipping_full_name" value="{{ form_data.shipping_full_name|default_if_none:'' }}">
+                    </p>
+
+                    <p>
+                        <label for="id_shipping_address_line1">Address line 1:</label><br>
+                        <input type="text" id="id_shipping_address_line1" name="shipping_address_line1" value="{{ form_data.shipping_address_line1|default_if_none:'' }}">
+                    </p>
+
+                    <p>
+                        <label for="id_shipping_address_line2">Address line 2 (optional):</label><br>
+                        <input type="text" id="id_shipping_address_line2" name="shipping_address_line2" value="{{ form_data.shipping_address_line2|default_if_none:'' }}">
+                    </p>
+
+                    <p>
+                        <label for="id_shipping_city">City:</label><br>
+                        <input type="text" id="id_shipping_city" name="shipping_city" value="{{ form_data.shipping_city|default_if_none:'' }}">
+                    </p>
+
+                    <p>
+                        <label for="id_shipping_postcode">Postcode:</label><br>
+                        <input type="text" id="id_shipping_postcode" name="shipping_postcode" value="{{ form_data.shipping_postcode|default_if_none:'' }}">
+                    </p>
+
+                    <p>
+                        <label for="id_shipping_country">Country:</label><br>
+                        <input type="text" id="id_shipping_country" name="shipping_country" value="{{ form_data.shipping_country|default_if_none:'' }}">
+                    </p>
+                </div>
 
                 <div id="card-element"></div>
                 <div id="card-errors"></div>
@@ -121,6 +163,14 @@
         } else {
             form.submit();
         }
+    });
+</script>
+
+<!-- JavaScript to show/hide shipping fields -->
+<script>
+    document.getElementById('ship-to-different').addEventListener('change', function() {
+        const shippingFields = document.getElementById('shipping-fields');
+        shippingFields.style.display = this.checked ? 'block' : 'none';
     });
 </script>
 {% endblock %}

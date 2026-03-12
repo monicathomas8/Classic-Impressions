@@ -26,6 +26,20 @@ def checkout(request):
             "city": request.POST.get("city", "").strip(),
             "postcode": request.POST.get("postcode", "").strip(),
             "country": request.POST.get("country", "").strip(),
+            "ship_to_different_address":
+                bool(request.POST.get("ship_to_different_address")),
+            "shipping_full_name":
+                request.POST.get("shipping_full_name", "").strip(),
+            "shipping_address_line1":
+                request.POST.get("shipping_address_line1", "").strip(),
+            "shipping_address_line2":
+                request.POST.get("shipping_address_line2", "").strip(),
+            "shipping_city":
+                request.POST.get("shipping_city", "").strip(),
+            "shipping_postcode":
+                request.POST.get("shipping_postcode", "").strip(),
+            "shipping_country":
+                request.POST.get("shipping_country", "").strip(),
         }
 
         required_fields = [
@@ -64,6 +78,13 @@ def checkout(request):
             city=form_data["city"],
             postcode=form_data["postcode"],
             country=form_data["country"],
+            ship_to_different_address=form_data["ship_to_different_address"],
+            shipping_full_name=form_data["shipping_full_name"],
+            shipping_address_line1=form_data["shipping_address_line1"],
+            shipping_address_line2=form_data["shipping_address_line2"],
+            shipping_city=form_data["shipping_city"],
+            shipping_postcode=form_data["shipping_postcode"],
+            shipping_country=form_data["shipping_country"],
             stripe_payment_intent=intent.id,
         )
 
